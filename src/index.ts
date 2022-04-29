@@ -1,22 +1,21 @@
-const validWords = ['react', 'vueJs']
+import { data } from './data'
+
+const validWords = data
 
 type Values = 'guess-correctly-position-and-letter' | 'miss' | 'guess-correctly-letter'
 
-const wordToGuess = validWords[Math.floor(Math.random() * length)]
+const wordToGuess = validWords[Math.floor(Math.random() * validWords.length)]
 
-console.log({ wordToGuess })
+const letters = wordToGuess.length
 
 function check(word: string): Values[] {
-  // TODO: Check if word exist
-
   if (word === wordToGuess) {
-    return [
-      'guess-correctly-position-and-letter',
-      'guess-correctly-position-and-letter',
-      'guess-correctly-position-and-letter',
-      'guess-correctly-position-and-letter',
-      'guess-correctly-position-and-letter',
-    ]
+    return Array.from(
+      {
+        length: letters,
+      },
+      () => 'guess-correctly-position-and-letter',
+    )
   }
 
   const result: Values[] = []
@@ -33,10 +32,13 @@ function check(word: string): Values[] {
   return result
 }
 
+const form = document.querySelector<HTMLFormElement>('#form')
 const element = document.querySelector<HTMLInputElement>('#input')
-const button = document.querySelector('#send')
 
-button.addEventListener('click', () => {
+form.addEventListener('submit', e => {
+  e.preventDefault()
   const result = check(element.value)
-  console.log(result)
+  console.log({ result })
 })
+
+export {}
