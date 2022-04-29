@@ -1,16 +1,19 @@
 import { data } from './data'
 
 const validWords = data
-
-type Values = 'guess-correctly-position-and-letter' | 'miss' | 'guess-correctly-letter'
-
 const wordToGuess = validWords[Math.floor(Math.random() * validWords.length)]
-
+console.log({ wordToGuess })
 const letters = wordToGuess.length
 
-function check(word: string): Values[] {
-  if (word === wordToGuess) {
-    return Array.from(
+const form = document.querySelector<HTMLFormElement>('#form')
+const element = document.querySelector<HTMLInputElement>('#input')
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  let result = []
+
+  if (element.value === wordToGuess) {
+    result = Array.from(
       {
         length: letters,
       },
@@ -18,8 +21,7 @@ function check(word: string): Values[] {
     )
   }
 
-  const result: Values[] = []
-  word.split('').forEach((letter, j) => {
+  element.value.split('').forEach((letter, j) => {
     if (letter === wordToGuess[j]) {
       result.push('guess-correctly-position-and-letter')
     } else if (wordToGuess.includes(letter)) {
@@ -29,15 +31,6 @@ function check(word: string): Values[] {
     }
   })
 
-  return result
-}
-
-const form = document.querySelector<HTMLFormElement>('#form')
-const element = document.querySelector<HTMLInputElement>('#input')
-
-form.addEventListener('submit', e => {
-  e.preventDefault()
-  const result = check(element.value)
   console.log({ result })
 })
 
