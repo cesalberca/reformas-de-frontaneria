@@ -1,30 +1,40 @@
 import { data } from './data'
 
-const validWords = data
-const wordToGuess = validWords[Math.floor(Math.random() * validWords.length)]
-console.log({ wordToGuess })
-const form = document.querySelector<HTMLFormElement>('#form')
-const element = document.querySelector<HTMLInputElement>('#input')
+// Word to guess
+const word = data[Math.floor(Math.random() * data.length)]
+console.log({ word })
+const form = document.querySelector('#form')
+const element = document.querySelector('#input')
 
 form.addEventListener('submit', e => {
   e.preventDefault()
   let result = []
 
-  if (element.value === wordToGuess) {
-    const x = []
-    for (let i = 0; i < wordToGuess.length; i++) {
+  // @ts-ignore
+  if (element.value === word) {
+    let x = []
+    for (let i = 0; i < word.length; i++) {
       x.push(1)
     }
     result = x
-  }
-
-  for (let i = 0; i < element.value.length; i++) {
-    if (element.value[i] === wordToGuess[i]) {
-      result.push(1)
-    } else if (wordToGuess.includes(element.value[i])) {
-      result.push(0)
-    } else {
-      result.push(-1)
+  } else {
+    /**
+     *  1 → Guessed letter and position correctly
+     *  0 → Guessed letter correctly
+     * -1 → Miss
+     */
+    // @ts-ignore
+    for (let i = 0; i < element.value.length; i++) {
+      // @ts-ignore
+      if (element.value[i] === word[i]) {
+        result.push(1)
+        // @ts-ignore
+        // } else if (word.includes(element.value[i])) {
+      } else if (word.indexOf(element.value[i]) !== -1) {
+        result.push(0)
+      } else {
+        result.push(-1)
+      }
     }
   }
 
