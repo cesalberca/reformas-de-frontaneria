@@ -3,8 +3,6 @@ import { data } from './data'
 const validWords = data
 const wordToGuess = validWords[Math.floor(Math.random() * validWords.length)]
 console.log({ wordToGuess })
-const letters = wordToGuess.length
-
 const form = document.querySelector<HTMLFormElement>('#form')
 const element = document.querySelector<HTMLInputElement>('#input')
 
@@ -13,23 +11,22 @@ form.addEventListener('submit', e => {
   let result = []
 
   if (element.value === wordToGuess) {
-    result = Array.from(
-      {
-        length: letters,
-      },
-      () => 'guess-correctly-position-and-letter',
-    )
+    const x = []
+    for (let i = 0; i < wordToGuess.length; i++) {
+      x.push(1)
+    }
+    result = x
   }
 
-  element.value.split('').forEach((letter, j) => {
-    if (letter === wordToGuess[j]) {
-      result.push('guess-correctly-position-and-letter')
-    } else if (wordToGuess.includes(letter)) {
-      result.push('guess-correctly-letter')
+  for (let i = 0; i < element.value.length; i++) {
+    if (element.value[i] === wordToGuess[i]) {
+      result.push(1)
+    } else if (wordToGuess.includes(element.value[i])) {
+      result.push(0)
     } else {
-      result.push('miss')
+      result.push(-1)
     }
-  })
+  }
 
   console.log({ result })
 })
