@@ -15,7 +15,7 @@ export function validate(wordToTry: string, wordToGuess: string): Guess[] {
       return Guess.PRESENT_AND_IN_CORRECT_POSITION
     }
 
-    if (wordToGuess.indexOf(letterToTry) !== -1) {
+    if (wordToGuess.includes(letterToTry)) {
       return Guess.PRESENT_BUT_NOT_IN_CORRECT_POSITION
     }
 
