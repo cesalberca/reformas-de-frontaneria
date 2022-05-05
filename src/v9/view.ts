@@ -32,8 +32,10 @@ export class View {
   }
 
   printRow() {
+    const wordDiv = document.createElement('div')
+    wordDiv.setAttribute('class', 'row')
+
     for (let i = 0; i < this.wordToGuess.length; i++) {
-      const wordDiv = document.createElement('div')
       this.printLetterCell(wordDiv)
       this.boardElement.appendChild(wordDiv)
     }
@@ -41,6 +43,7 @@ export class View {
 
   printLetterCell(element: HTMLDivElement) {
     const div = document.createElement('div')
+    div.setAttribute('class', 'cell')
     element.appendChild(div)
   }
 }
