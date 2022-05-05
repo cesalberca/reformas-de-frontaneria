@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build --public-url /reformas-de-frontaneria src/index.html",
-    "compile": "tsc --noEmit --incremental",
+    "compile": "tsc --noEmit",
     "test": "jest --coverage",
     "format": "prettier --write --ignore-path .gitignore ."
   },

@@ -3,8 +3,8 @@ import { validate } from './validate'
 
 new WordsRepository(window).findAll().then(data => {
   const wordToGuess = data[Math.floor(Math.random() * data.length)]
-  const form = document.querySelector<HTMLFormElement>('#form')
-  const element = document.querySelector<HTMLInputElement>('#input')
+  const form = document.querySelector<HTMLFormElement>('#form')!
+  const element = document.querySelector<HTMLInputElement>('#input')!
 
   form.addEventListener('submit', e => {
     e.preventDefault()
