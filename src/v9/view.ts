@@ -7,7 +7,8 @@ export class View {
   form = document.querySelector<HTMLFormElement>('#form')
   element = document.querySelector<HTMLInputElement>('#input')
   wordToGuess: string
-  tries: Guess[][]
+  tries: Guess[][] = []
+  triedWords: string[] = []
 
   constructor(
     private readonly getRandomWordToGuessUseCase: GetRandomWordToGuessUseCase,
@@ -28,30 +29,54 @@ export class View {
     e.preventDefault()
     const result = await this.getWordGuessesUseCase.execute(this.element.value, this.wordToGuess)
     this.tries.push(result)
+    this.triedWords.push(this.element.value)
+
+    this.clearInput()
     console.log({ result })
   }
 
   printWord() {}
 
+  clearInput() {
+    this.element.value = ''
+  }
+
   printBoard() {
     for (let i = 0; i < 6; i++) {
-      this.printRow()
+      this.printRow(this.tries[i], this.triedWords[i])
     }
   }
 
-  printRow() {
+  printRow(guesses: Guess[], triedWord: string) {
     const wordDiv = document.createElement('div')
     wordDiv.setAttribute('class', 'row')
 
     for (let i = 0; i < this.wordToGuess.length; i++) {
-      this.printLetterCell(wordDiv)
+      this.printLetterCell(wordDiv, guesses[i], triedWord[i])
       this.boardElement.appendChild(wordDiv)
     }
   }
 
-  printLetterCell(element: HTMLDivElement) {
+  printLetterCell(element: HTMLDivElement, guess: Guess, triedLetter: string) {
     const div = document.createElement('div')
     div.setAttribute('class', 'cell')
+    div.innerHTML = triedLetter
+
+    let className: string
+    switch (guess) {
+      case Guess.NOT_PRESENT:
+        className = 'not-present'
+        break
+      case Guess.PRESENT_AND_IN_CORRECT_POSITION:
+        className = 'present-and-in-correct-position'
+        break
+      case Guess.PRESENT_BUT_NOT_IN_CORRECT_POSITION:
+        className = 'present-but-not-in-correct-position'
+        break
+    }
+
+    div.setAttribute('class', className)
+
     element.appendChild(div)
   }
 }
