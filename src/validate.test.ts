@@ -1,4 +1,4 @@
-import { validate } from './v7/validate'
+import { validate } from './v9/validate'
 
 describe('validate', () => {
   it('should validate that no letter is present in the word', () => {

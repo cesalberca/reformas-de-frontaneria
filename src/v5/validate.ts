@@ -14,7 +14,7 @@ export function validate(wordToTry: string, wordToGuess: string) {
       return 1
     }
 
-    if (wordToGuess.indexOf(letterToTry) !== -1) {
+    if (wordToGuess.includes(letterToTry)) {
       return 0
     }
 

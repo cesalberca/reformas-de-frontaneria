@@ -13,7 +13,7 @@ export function validate(wordToTry: string, wordToGuess: string) {
   for (let i = 0; i < wordToTry.length; i++) {
     if (wordToTry[i] === wordToGuess[i]) {
       result.push(1)
-    } else if (wordToGuess.indexOf(wordToTry[i]) !== -1) {
+    } else if (wordToGuess.includes(wordToTry[i])) {
       result.push(0)
     } else {
       result.push(-1)
