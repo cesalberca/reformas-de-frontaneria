@@ -5,6 +5,6 @@ export class GetRandomWordToGuessUseCase {
   async execute() {
     const words = await this.wordsRepository.findAll()
     const wordToGuess = words[Math.floor(this.randomGenerator() * words.length)]
-    return wordToGuess
+    return 'which'
   }
 }

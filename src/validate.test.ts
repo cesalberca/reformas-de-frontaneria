@@ -1,4 +1,4 @@
-import { WordValidator } from './v9/word-validator'
+import { WordValidator } from './v8/word-validator'
 
 describe('validate', () => {
   it('should validate that no letter is present in the word', () => {
@@ -17,5 +17,11 @@ describe('validate', () => {
     const actual = new WordValidator().validate('abc', 'ade')
 
     expect(actual).toEqual([1, -1, -1])
+  })
+
+  it('should handle a letter that is present multiple times', () => {
+    const actual = new WordValidator().validate('aba', 'aca')
+
+    expect(actual).toEqual([1, -1, 1])
   })
 })

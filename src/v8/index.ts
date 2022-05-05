@@ -1,16 +1,16 @@
 import { WordsRepository } from './words-repository'
-import { validate } from './validate'
+import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
+import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
+import { WordValidator } from './word-validator'
+import { View } from './view'
 
-new WordsRepository(window).findAll().then(data => {
-  const wordToGuess = data[Math.floor(Math.random() * data.length)]
-  const form = document.querySelector<HTMLFormElement>('#form')!
-  const element = document.querySelector<HTMLInputElement>('#input')!
+const wordsRepository = new WordsRepository(window)
+const wordValidator = new WordValidator()
+const seed = Math.random()
+const getWordGuessesUseCase = new GetWordGuessesUseCase(wordValidator)
+const getRandomWordToGuessUseCase = new GetRandomWordToGuessUseCase(wordsRepository, () => seed)
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
-    const result = validate(element.value, wordToGuess)
-    console.log({ result })
-  })
-})
+const view = new View(getRandomWordToGuessUseCase, getWordGuessesUseCase)
+view.init()
 
 export {}
