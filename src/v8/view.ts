@@ -3,12 +3,12 @@ import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
 import { Guess } from './guess'
 
 export class View {
-  boardElement = document.querySelector<HTMLDivElement>('#board')!
-  form = document.querySelector<HTMLFormElement>('#form')!
-  element = document.querySelector<HTMLInputElement>('#input')!
-  wordToGuess = ''
-  tries: Guess[][] = []
-  triedWords: string[] = []
+  private boardElement = document.querySelector<HTMLDivElement>('#board')!
+  private form = document.querySelector<HTMLFormElement>('#form')!
+  private element = document.querySelector<HTMLInputElement>('#input')!
+  private wordToGuess = ''
+  private tries: Guess[][] = []
+  private triedWords: string[] = []
   private maximumNumberOfTries = 6
 
   constructor(
