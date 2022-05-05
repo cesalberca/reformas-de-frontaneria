@@ -5,8 +5,8 @@ fetch(
   .then(availableWords => {
     const wordToGuess = availableWords[Math.floor(Math.random() * availableWords.length)]
     console.log({ wordToGuess })
-    const form = document.querySelector<HTMLFormElement>('#form')
-    const element = document.querySelector<HTMLInputElement>('#input')
+    const form = document.querySelector<HTMLFormElement>('#form')!
+    const element = document.querySelector<HTMLInputElement>('#input')!
 
     form.addEventListener('submit', e => {
       e.preventDefault()

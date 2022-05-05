@@ -1,4 +1,4 @@
-import { WordValidator } from './validate'
+import { WordValidator } from './word-validator'
 import { Guess } from './guess'
 
 export class GetWordGuessesUseCase {

@@ -1,7 +1,7 @@
 import { WordsRepository } from './words-repository'
 import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
 import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
-import { WordValidator } from './validate'
+import { WordValidator } from './word-validator'
 import { View } from './view'
 
 const seed = Math.random()
