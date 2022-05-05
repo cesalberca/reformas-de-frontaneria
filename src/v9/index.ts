@@ -10,9 +10,6 @@ const wordValidator = new WordValidator()
 const getWordGuessesUseCase = new GetWordGuessesUseCase(wordValidator)
 const getRandomWordToGuessUseCase = new GetRandomWordToGuessUseCase(wordsRepository, () => seed)
 
-const form = document.querySelector<HTMLFormElement>('#form')
-const element = document.querySelector<HTMLInputElement>('#input')
-
 const view = new View(getRandomWordToGuessUseCase, getWordGuessesUseCase)
 view.init()
 
