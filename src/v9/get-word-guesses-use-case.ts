@@ -1,11 +1,10 @@
-import { validate } from './validate'
+import { WordValidator } from './validate'
 import { Guess } from './guess'
 
 export class GetWordGuessesUseCase {
-  constructor() {}
+  constructor(private readonly wordValidator: WordValidator) {}
 
   async execute(wordToTry: string, wordToGuess: string): Promise<Guess[]> {
-    const guesses = validate(wordToTry, wordToGuess)
-    return guesses
+    return this.wordValidator.validate(wordToTry, wordToGuess)
   }
 }
