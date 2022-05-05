@@ -2,12 +2,14 @@ import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case
 import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
 import { Guess } from './guess'
 
+type Empty = -2
+
 export class View {
-  boardElement = document.querySelector<HTMLDivElement>('#board')
-  form = document.querySelector<HTMLFormElement>('#form')
-  element = document.querySelector<HTMLInputElement>('#input')
-  wordToGuess: string
-  tries: Guess[][]
+  boardElement = document.querySelector<HTMLDivElement>('#board')!
+  form = document.querySelector<HTMLFormElement>('#form')!
+  element = document.querySelector<HTMLInputElement>('#input')!
+  wordToGuess: string = ''
+  tries: (Guess | Empty)[][] = []
 
   constructor(
     private readonly getRandomWordToGuessUseCase: GetRandomWordToGuessUseCase,
