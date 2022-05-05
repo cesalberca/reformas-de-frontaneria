@@ -1,4 +1,4 @@
-import { validate } from './validate.v4'
+import { validate } from './validate'
 
 fetch(
   'https://gist.githubusercontent.com/cesalberca/3d0e343842c7697e0f788178e59fb471/raw/22bfe35c910dd02db78fec87fa39ca25cc604816/data.json',

@@ -1,5 +1,5 @@
 import { WordsRepository } from './words-repository'
-import { validate } from './validate.v9'
+import { validate } from './validate'
 
 new WordsRepository(window).findAll().then(data => {
   const wordToGuess = data[Math.floor(Math.random() * data.length)]
