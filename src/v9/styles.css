@@ -1,0 +1,52 @@
+:root {
+  --on-state-color: var(--white-color);
+  --not-present-color: var(--dark-gray-color);
+  --present-but-not-in-correct-position: var(--yellow-color);
+  --present-and-in-correct-position: var(--green-color);
+
+  --white-color: white;
+  --gray-color: #e2e8f0;
+  --dark-gray-color: #787c7e;
+  --green-color: #6aaa64;
+  --yellow-color: #cab458;
+
+  --s: 0.25rem;
+  --m: 1rem;
+  --l: 2rem;
+
+  --container-width: 800px;
+}
+
+.board {
+  margin: 0 auto;
+  max-width: var(--container-width);
+}
+
+.row {
+  display: flex;
+  gap: var(--s);
+}
+
+.cell {
+  border: 2px solid var(--gray-color);
+  width: 100px;
+  height: 100px;
+}
+
+.not-present,
+.present-but-not-in-correct-position,
+.present-and-in-correct-position {
+  color: var(--on-state-color);
+}
+
+.cell.not-present {
+  background-color: var(--not-present-color);
+}
+
+.cell.present-but-not-in-correct-position {
+  background-color: var(--present-but-not-in-correct-position);
+}
+
+.cell.present-and-in-correct-position {
+  background-color: var(--present-and-in-correct-position);
+}
