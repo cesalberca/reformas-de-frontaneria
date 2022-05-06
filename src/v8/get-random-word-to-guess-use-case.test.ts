@@ -7,6 +7,6 @@ describe('GetRandomWordToGuessUseCase', () => {
     const wordsRepository = mock(WordsRepository)
     const getRandomWordToGuessUseCase = new GetRandomWordToGuessUseCase(instance(wordsRepository), () => 0.5)
 
-    getRandomWordToGuessUseCase.execute()
+    getRandomWordToGuessUseCase.execute(seed)
   })
 })

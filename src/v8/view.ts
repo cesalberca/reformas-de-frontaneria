@@ -1,5 +1,3 @@
-import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
-import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
 import { Guess } from './guess'
 
 export class View {
@@ -11,17 +9,12 @@ export class View {
   private triedWords: string[] = []
   private maximumNumberOfTries = 6
 
-  constructor(
-    private readonly getRandomWordToGuessUseCase: GetRandomWordToGuessUseCase,
-    private readonly getWordGuessesUseCase: GetWordGuessesUseCase,
-  ) {}
-
-  async init() {
-    this.wordToGuess = await this.getRandomWordToGuessUseCase.execute()
-    console.log(this.wordToGuess)
+  init(wordToGuess: string) {
+    this.tries = []
+    this.triedWords = []
+    this.wordToGuess = wordToGuess
     this.generateEmptyGuesses()
     this.printBoard()
-    this.addEventListeners()
   }
 
   private printBoard() {
@@ -41,32 +34,30 @@ export class View {
     }
   }
 
-  private addEventListeners() {
-    this.form.addEventListener('submit', this.checkWord.bind(this))
-  }
+  addEventListeners(onGuessWord: (value: string) => Promise<Guess[]>, onFinished: () => void) {
+    this.form.addEventListener('submit', async (e: Event) => {
+      e.preventDefault()
+      const result = await onGuessWord(this.element.value)
+      this.tries[this.triedWords.length] = result
+      this.triedWords.push(this.element.value)
 
-  private async checkWord(e: Event) {
-    e.preventDefault()
-    const result = await this.getWordGuessesUseCase.execute(this.element.value, this.wordToGuess)
-    this.tries[this.triedWords.length] = result
-    this.triedWords.push(this.element.value)
+      this.clearInput()
 
-    this.clearInput()
+      this.printBoard()
 
-    this.printBoard()
+      if (result.every(x => x === Guess.PRESENT_AND_IN_CORRECT_POSITION)) {
+        alert('You won! Try again!')
+        onFinished()
+        return
+      }
 
-    if (result.every(x => x === Guess.PRESENT_AND_IN_CORRECT_POSITION)) {
-      alert('You won! Try again!')
-      this.init()
-      return
-    }
+      const isLastTry = this.triedWords.length === this.maximumNumberOfTries
 
-    const isLastTry = this.triedWords.length === this.maximumNumberOfTries
-
-    if (isLastTry) {
-      alert(`You lost! The word to guess was ${this.wordToGuess}. Try again!`)
-      this.init()
-    }
+      if (isLastTry) {
+        alert(`You lost! The word to guess was ${this.wordToGuess}. Try again!`)
+        onFinished()
+      }
+    })
   }
 
   private clearBoard() {
