@@ -6,13 +6,13 @@ fetch(
     const wordToGuess = availableWords[Math.floor(Math.random() * availableWords.length)]
     console.log({ wordToGuess })
     const form = document.querySelector<HTMLFormElement>('#form')!
-    const element = document.querySelector<HTMLInputElement>('#input')!
+    const input = document.querySelector<HTMLInputElement>('#input')!
 
     form.addEventListener('submit', e => {
       e.preventDefault()
       let result = []
 
-      if (element.value === wordToGuess) {
+      if (input.value === wordToGuess) {
         let x = []
         for (let i = 0; i < wordToGuess.length; i++) {
           x.push(1)
@@ -24,11 +24,11 @@ fetch(
          *  0 → Guessed letter correctly
          * -1 → Miss
          */
-        for (let i = 0; i < element.value.length; i++) {
-          if (element.value[i] === wordToGuess[i]) {
+        for (let i = 0; i < input.value.length; i++) {
+          if (input.value[i] === wordToGuess[i]) {
             result.push(1)
-            // } else if (word.includes(element.value[i])) {
-          } else if (wordToGuess.indexOf(element.value[i]) !== -1) {
+            // } else if (word.includes(input.value[i])) {
+          } else if (wordToGuess.indexOf(input.value[i]) !== -1) {
             result.push(0)
           } else {
             result.push(-1)
