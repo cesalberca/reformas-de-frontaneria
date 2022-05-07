@@ -6,7 +6,9 @@ fetch(
     // Word to guess
     const w = data[Math.floor(Math.random() * data.length)]
     console.log({ word: w })
+    // Form
     const f = document.querySelector<HTMLFormElement>('#form')!
+    // Input
     const b = document.querySelector<HTMLInputElement>('#input')!
 
     f.addEventListener('submit', e => {
