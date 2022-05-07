@@ -6,16 +6,18 @@ fetch(
     // Word to guess
     const w = data[Math.floor(Math.random() * data.length)]
     console.log({ word: w })
+    // Form
     const f = document.querySelector<HTMLFormElement>('#form')!
-    const b = document.querySelector<HTMLInputElement>('#input')!
+    // Input
+    const i = document.querySelector<HTMLInputElement>('#input')!
 
     f.addEventListener('submit', e => {
       e.preventDefault()
       let r = []
 
-      if (b.value === w) {
+      if (i.value === w) {
         let x = []
-        for (let i = 0; i < w.length; i++) {
+        for (let i2 = 0; i2 < w.length; i2++) {
           x.push(1)
         }
         r = x
@@ -25,11 +27,11 @@ fetch(
          *  0 → Guessed letter correctly
          * -1 → Miss
          */
-        for (let i = 0; i < b.value.length; i++) {
-          if (b.value[i] === w[i]) {
+        for (let i3 = 0; i3 < i.value.length; i3++) {
+          if (i.value[i3] === w[i3]) {
             r.push(1)
-            // } else if (word.includes(element.value[i])) {
-          } else if (w.indexOf(b.value[i]) !== -1) {
+            // } else if (word.includes(element.value[i3])) {
+          } else if (w.indexOf(i.value[i3]) !== -1) {
             r.push(0)
           } else {
             r.push(-1)

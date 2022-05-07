@@ -1,7 +1,7 @@
 import { View } from './view'
-import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
-import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
-import { Guess } from './guess'
+import { GetWordGuessesUseCase } from '../application/get-word-guesses-use-case'
+import { GetRandomWordToGuessUseCase } from '../application/get-random-word-to-guess-use-case'
+import { Guess } from '../domain/guess'
 
 export class Controller {
   private wordToGuess = ''
@@ -20,7 +20,7 @@ export class Controller {
     this.wordToGuess = await this.getRandomWordToGuessUseCase.execute(seed)
     this.generateEmptyGuesses()
     console.log(this.wordToGuess)
-    this.view.init(this.wordToGuess.length, this.tries, this.triedWords)
+    this.view.init(this.maximumNumberOfTries, this.wordToGuess.length, this.tries, this.triedWords)
     this.view.addEventListeners(this.wordHandler)
   }
 

@@ -1,8 +1,8 @@
-import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
+import { GetWordGuessesUseCase } from './use-cases/get-word-guesses-use-case'
 import { WordValidator } from './word-validator'
 import { View } from './view'
 import { Controller } from './controller'
-import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
+import { GetRandomWordToGuessUseCase } from './use-cases/get-random-word-to-guess-use-case'
 import { WordsRepository } from './words-repository'
 
 const wordsRepository = new WordsRepository(window)
