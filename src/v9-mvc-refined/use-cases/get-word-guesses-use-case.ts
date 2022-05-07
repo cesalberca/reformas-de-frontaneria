@@ -1,5 +1,5 @@
-import { WordValidator } from './word-validator'
-import { Guess } from './guess'
+import { WordValidator } from '../word-validator'
+import { Guess } from '../guess'
 
 export class GetWordGuessesUseCase {
   constructor(private readonly wordValidator: WordValidator) {}

@@ -1,7 +1,7 @@
 import { GetWordGuessesUseCase } from './get-word-guesses-use-case'
 import { instance, mock, when } from 'ts-mockito'
-import { WordValidator } from './word-validator'
-import { Guess } from './guess'
+import { WordValidator } from '../word-validator'
+import { Guess } from '../guess'
 
 describe('GetWordGuessesUseCase', () => {
   it('should get word guesses', async () => {

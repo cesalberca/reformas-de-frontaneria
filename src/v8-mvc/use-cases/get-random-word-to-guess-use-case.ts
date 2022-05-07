@@ -1,4 +1,4 @@
-import { WordsRepository } from './words-repository'
+import { WordsRepository } from '../words-repository'
 
 export class GetRandomWordToGuessUseCase {
   constructor(private readonly wordsRepository: WordsRepository) {}

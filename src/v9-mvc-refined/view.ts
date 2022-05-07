@@ -6,16 +6,17 @@ export class View {
   private element = document.querySelector<HTMLInputElement>('#input')!
 
   private boardLength: number
-  private maximumNumberOfTries = 6
+  private maxRows = 6
 
-  init(boardLength: number, tries: Guess[][], triedWords: string[]) {
-    this.boardLength = boardLength
+  init(maxRows: number, rowLength: number, tries: Guess[][], triedWords: string[]) {
+    this.maxRows = maxRows
+    this.boardLength = rowLength
     this.printBoard(tries, triedWords)
   }
 
   printBoard(tries: Guess[][], triedWords: string[]) {
     this.clearBoard()
-    for (let i = 0; i < this.maximumNumberOfTries; i++) {
+    for (let i = 0; i < this.maxRows; i++) {
       this.printRow(tries[i], triedWords[i])
     }
   }

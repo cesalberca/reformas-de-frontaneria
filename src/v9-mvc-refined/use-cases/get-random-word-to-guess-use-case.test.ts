@@ -1,6 +1,6 @@
 import { GetRandomWordToGuessUseCase } from './get-random-word-to-guess-use-case'
 import { instance, mock, when } from 'ts-mockito'
-import { WordsRepository } from './words-repository'
+import { WordsRepository } from '../words-repository'
 
 describe('GetRandomWordToGuessUseCase', () => {
   it('should get random word to guess', async () => {
