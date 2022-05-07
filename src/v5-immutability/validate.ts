@@ -1,8 +1,20 @@
 export function validate(wordToTry: string, wordToGuess: string) {
-  if (wordToTry === wordToGuess) {
-    return Array.from({ length: wordToGuess.length }).fill(1)
+  if (isWordGuessed(wordToTry, wordToGuess)) {
+    return setCorrectWordResult(wordToGuess)
   }
 
+  return setIndividualLetterResult(wordToTry, wordToGuess)
+}
+
+function isWordGuessed(wordToTry: string, wordToGuess: string) {
+  return wordToTry === wordToGuess
+}
+
+function setCorrectWordResult(wordToGuess: string) {
+  return Array.from({ length: wordToGuess.length }).fill(1)
+}
+
+function setIndividualLetterResult(wordToTry: string, wordToGuess: string) {
   /**
    *  1 → Guessed letter and position correctly
    *  0 → Guessed letter correctly
