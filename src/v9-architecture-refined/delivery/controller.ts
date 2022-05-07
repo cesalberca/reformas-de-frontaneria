@@ -1,7 +1,7 @@
 import { View } from './view'
-import { GetWordGuessesUseCase } from './use-cases/get-word-guesses-use-case'
-import { GetRandomWordToGuessUseCase } from './use-cases/get-random-word-to-guess-use-case'
-import { Guess } from './guess'
+import { GetWordGuessesUseCase } from '../application/get-word-guesses-use-case'
+import { GetRandomWordToGuessUseCase } from '../application/get-random-word-to-guess-use-case'
+import { Guess } from '../domain/guess'
 
 export class Controller {
   private wordToGuess = ''

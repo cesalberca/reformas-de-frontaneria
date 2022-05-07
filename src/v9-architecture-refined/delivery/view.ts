@@ -1,4 +1,4 @@
-import { Guess } from './guess'
+import { Guess } from '../domain/guess'
 
 export class View {
   private boardElement = document.querySelector<HTMLDivElement>('#board')!

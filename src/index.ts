@@ -1,1 +1,1 @@
-import './v9-mvc-refined/index'
+import './v9-architecture-refined/index'
