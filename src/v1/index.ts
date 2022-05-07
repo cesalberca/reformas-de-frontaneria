@@ -4,40 +4,40 @@ fetch(
   .then(x => x.json())
   .then(data => {
     // Word to guess
-    const word = data[Math.floor(Math.random() * data.length)]
-    console.log({ word })
-    const form = document.querySelector<HTMLFormElement>('#form')!
-    const element = document.querySelector<HTMLInputElement>('#input')!
+    const w = data[Math.floor(Math.random() * data.length)]
+    console.log({ word: w })
+    const f = document.querySelector<HTMLFormElement>('#form')!
+    const b = document.querySelector<HTMLInputElement>('#input')!
 
-    form.addEventListener('submit', e => {
+    f.addEventListener('submit', e => {
       e.preventDefault()
-      let result = []
+      let r = []
 
-      if (element.value === word) {
+      if (b.value === w) {
         let x = []
-        for (let i = 0; i < word.length; i++) {
+        for (let i = 0; i < w.length; i++) {
           x.push(1)
         }
-        result = x
+        r = x
       } else {
         /**
          *  1 → Guessed letter and position correctly
          *  0 → Guessed letter correctly
          * -1 → Miss
          */
-        for (let i = 0; i < element.value.length; i++) {
-          if (element.value[i] === word[i]) {
-            result.push(1)
+        for (let i = 0; i < b.value.length; i++) {
+          if (b.value[i] === w[i]) {
+            r.push(1)
             // } else if (word.includes(element.value[i])) {
-          } else if (word.indexOf(element.value[i]) !== -1) {
-            result.push(0)
+          } else if (w.indexOf(b.value[i]) !== -1) {
+            r.push(0)
           } else {
-            result.push(-1)
+            r.push(-1)
           }
         }
       }
 
-      console.log({ result })
+      console.log({ result: r })
     })
   })
 
