@@ -1,7 +1,7 @@
-import { WordsRepository } from '../words-repository'
+import { WordsHttpRepository } from '../infrastructure/words-http-repository'
 
 export class GetRandomWordToGuessUseCase {
-  constructor(private readonly wordsRepository: WordsRepository) {}
+  constructor(private readonly wordsRepository: WordsHttpRepository) {}
 
   async execute(seed: number) {
     const words = await this.wordsRepository.findAll()

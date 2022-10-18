@@ -1,4 +1,4 @@
-import { Guess } from './guess'
+import { Guess } from '../domain/guess'
 
 export class View {
   private boardElement = document.querySelector<HTMLDivElement>('#board')!
@@ -8,7 +8,7 @@ export class View {
   private boardLength: number
   private maxRows = 6
 
-  init(maxRows: number, rowLength: number, tries: Guess[][], triedWords: string[]) {
+  start(maxRows: number, rowLength: number, tries: Guess[][], triedWords: string[]) {
     this.maxRows = maxRows
     this.boardLength = rowLength
     this.printBoard(tries, triedWords)
@@ -22,8 +22,8 @@ export class View {
   }
 
   addEventListeners(onGuessWord: Function) {
-    this.form.addEventListener('submit', async (e: Event) => {
-      e.preventDefault()
+    this.form.addEventListener('submit', async (event: Event) => {
+      event.preventDefault()
 
       if (!this.element.value) {
         return

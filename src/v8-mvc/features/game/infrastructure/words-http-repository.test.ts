@@ -1,9 +1,9 @@
-import { WordsRepository } from './words-repository'
+import { WordsHttpRepository } from './words-http-repository'
 
-describe('WordsRepository', () => {
+describe('WordsHttpRepository', () => {
   it('should find all words', async () => {
     const fetcher = jest.fn().mockResolvedValue({ json: () => Promise.resolve(['foo', 'bar', 'baz']) } as Response)
-    const wordsRepository = new WordsRepository(fetcher)
+    const wordsRepository = new WordsHttpRepository(fetcher)
 
     const actual = await wordsRepository.findAll()
 

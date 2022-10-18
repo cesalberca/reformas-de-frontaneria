@@ -1,4 +1,4 @@
-import { WordValidator } from './v8-mvc/word-validator'
+import { WordValidator } from './word-validator'
 
 describe('validate', () => {
   it('should validate that no letter is present in the word', () => {

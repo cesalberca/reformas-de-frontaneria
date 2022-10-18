@@ -1,3 +1,7 @@
+/**
+ * Simplify validation logic with early return clause and using Array.from
+ */
+
 export function validate(wordToTry: string, wordToGuess: string) {
   let result = []
 

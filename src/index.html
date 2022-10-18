@@ -5,18 +5,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="v9-mvc-refined/styles.css" />
+    <link rel="stylesheet" href="v8-mvc/styles.css" />
   </head>
 
   <body>
-    <div class="wrapper">
+    <main class="wrapper">
       <h1>WordleJS</h1>
-      <div class="board" id="board"></div>
-      <form id="form" action="">
-        <label class="input">Palabra<input id="input" type="text" /></label>
-        <button>Enviar</button>
-      </form>
-    </div>
+      <div>
+        <div class="board" id="board"></div>
+        <form id="form" class="form" action="">
+          <input aria-label="Palabra" id="input" type="text" class="input" />
+          <button>Enviar</button>
+        </form>
+      </div>
+    </main>
     <script type="module" src="index.ts"></script>
   </body>
 </html>

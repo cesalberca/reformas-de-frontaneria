@@ -1,6 +1,7 @@
-type Word = string
+import { Word } from '../domain/word'
+import { WordsRepository } from '../domain/words-repository'
 
-export class WordsRepository {
+export class WordsHttpRepository implements WordsRepository {
   constructor(private readonly fetcher: typeof globalThis.fetch) {}
 
   findAll(): Promise<Word[]> {
