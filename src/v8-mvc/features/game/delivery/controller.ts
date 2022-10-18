@@ -4,10 +4,11 @@ import { GetRandomWordToGuessUseCase } from '../application/get-random-word-to-g
 import { Guess } from '../domain/guess'
 
 export class Controller {
+  private static MAXIMUM_NUMBER_OF_TRIES = 6
+
   private wordToGuess = ''
   private tries: Guess[][] = []
   private triedWords: string[] = []
-  private maximumNumberOfTries = 6
 
   constructor(
     private readonly view: View,
@@ -15,16 +16,15 @@ export class Controller {
     private readonly getRandomWordToGuessUseCase: GetRandomWordToGuessUseCase,
   ) {}
 
-  async start() {
+  async start(): Promise<void> {
     const seed = Math.random()
     this.wordToGuess = await this.getRandomWordToGuessUseCase.execute(seed)
     this.generateEmptyGuesses()
-    console.log(this.wordToGuess)
-    this.view.start(this.maximumNumberOfTries, this.wordToGuess.length, this.tries, this.triedWords)
+    this.view.start(Controller.MAXIMUM_NUMBER_OF_TRIES, this.wordToGuess, this.tries, this.triedWords)
     this.view.addEventListeners(this.wordHandler.bind(this))
   }
 
-  async wordHandler(wordToTry: string) {
+  async wordHandler(wordToTry: string): Promise<void> {
     const result = await this.getWordGuessesUseCase.execute(wordToTry, this.wordToGuess)
     this.tries[this.triedWords.length] = result
     this.triedWords.push(wordToTry)
@@ -37,14 +37,12 @@ export class Controller {
       return
     }
 
-    const isLastTry = this.triedWords.length === this.maximumNumberOfTries
+    const isLastTry = this.triedWords.length === Controller.MAXIMUM_NUMBER_OF_TRIES
 
     if (isLastTry) {
       this.view.showLostMessage(this.wordToGuess)
       this.resetGame()
     }
-
-    return result
   }
 
   private resetGame() {
@@ -59,7 +57,7 @@ export class Controller {
   }
 
   private generateEmptyGuesses() {
-    for (let i = 0; i < this.maximumNumberOfTries; i++) {
+    for (let i = 0; i < Controller.MAXIMUM_NUMBER_OF_TRIES; i++) {
       const values: Guess[] = []
       for (let j = 0; j < this.wordToGuess.length; j++) {
         values.push(Guess.EMPTY)

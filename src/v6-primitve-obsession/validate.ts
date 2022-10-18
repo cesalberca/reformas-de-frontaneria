@@ -1,5 +1,6 @@
 /**
  * Avoid primitive obsession by adding a Guess enum
+ * Avoid early optimizations as it makes the code harder to follow
  */
 
 enum Guess {
@@ -9,10 +10,6 @@ enum Guess {
 }
 
 export function validate(wordToTry: string, wordToGuess: string): Guess[] {
-  if (wordToTry === wordToGuess) {
-    return Array.from<Guess>({ length: wordToGuess.length }).fill(Guess.PRESENT_AND_IN_CORRECT_POSITION)
-  }
-
   return wordToTry.split('').map((letterToTry, indexLetterToGuess) => {
     const letterToGuess = wordToGuess[indexLetterToGuess]
     if (letterToTry === letterToGuess) {

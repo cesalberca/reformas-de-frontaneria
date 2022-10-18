@@ -1,17 +1,18 @@
 import { Guess } from '../domain/guess'
 
 export class View {
-  private boardElement = document.querySelector<HTMLDivElement>('#board')!
-  private form = document.querySelector<HTMLFormElement>('#form')!
-  private element = document.querySelector<HTMLInputElement>('#input')!
+  private readonly boardElement = document.querySelector<HTMLDivElement>('#board')!
+  private readonly form = document.querySelector<HTMLFormElement>('#form')!
+  private readonly element = document.querySelector<HTMLInputElement>('#input')!
 
   private boardLength: number
   private maxRows = 6
 
-  start(maxRows: number, rowLength: number, tries: Guess[][], triedWords: string[]) {
+  start(maxRows: number, wordToGuess: string, tries: Guess[][], triedWords: string[]) {
     this.maxRows = maxRows
-    this.boardLength = rowLength
+    this.boardLength = wordToGuess.length
     this.printBoard(tries, triedWords)
+    this.setInputValidation(wordToGuess)
   }
 
   printBoard(tries: Guess[][], triedWords: string[]) {
@@ -45,17 +46,22 @@ export class View {
     this.element.value = ''
   }
 
+  private setInputValidation(wordToGuess: string) {
+    this.element.setAttribute('maxlength', wordToGuess.length.toString())
+    this.element.setAttribute('minlength', wordToGuess.length.toString())
+  }
+
   private clearBoard() {
     this.boardElement.innerHTML = ''
   }
 
   private printRow(guesses: Guess[], triedWord?: string) {
-    const wordDiv = document.createElement('div')
-    wordDiv.setAttribute('class', 'row')
+    const word = document.createElement('div')
+    word.classList.add('row')
 
     for (let i = 0; i < this.boardLength; i++) {
-      this.printLetterCell(wordDiv, guesses[i], triedWord?.[i])
-      this.boardElement.appendChild(wordDiv)
+      this.printLetterCell(word, guesses[i], triedWord?.[i])
+      this.boardElement.appendChild(word)
     }
   }
 
