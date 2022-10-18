@@ -15,16 +15,16 @@ export class Controller {
     private readonly getRandomWordToGuessUseCase: GetRandomWordToGuessUseCase,
   ) {}
 
-  start = async () => {
+  async start() {
     const seed = Math.random()
     this.wordToGuess = await this.getRandomWordToGuessUseCase.execute(seed)
     this.generateEmptyGuesses()
     console.log(this.wordToGuess)
     this.view.start(this.maximumNumberOfTries, this.wordToGuess.length, this.tries, this.triedWords)
-    this.view.addEventListeners(this.wordHandler)
+    this.view.addEventListeners(this.wordHandler.bind(this))
   }
 
-  wordHandler = async (wordToTry: string) => {
+  async wordHandler(wordToTry: string) {
     const result = await this.getWordGuessesUseCase.execute(wordToTry, this.wordToGuess)
     this.tries[this.triedWords.length] = result
     this.triedWords.push(wordToTry)

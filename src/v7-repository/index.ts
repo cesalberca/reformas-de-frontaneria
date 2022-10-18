@@ -10,8 +10,8 @@ new WordsRepository(window.fetch.bind(this)).findAll().then(data => {
   const form = document.querySelector<HTMLFormElement>('#form')!
   const element = document.querySelector<HTMLInputElement>('#input')!
 
-  form.addEventListener('submit', e => {
-    e.preventDefault()
+  form.addEventListener('submit', event => {
+    event.preventDefault()
     const result = validate(element.value, wordToGuess)
     console.log({ result })
   })
