@@ -5,19 +5,6 @@ import { GetWordGuessesUseCase } from '../application/get-word-guesses-use-case'
 import { GetRandomWordToGuessUseCase } from '../application/get-random-word-to-guess-use-case'
 import { Guess } from '../domain/guess'
 
-function setup() {
-  const view = mock(View)
-  const getWordGuessesUseCase = mock(GetWordGuessesUseCase)
-  const getRandomWordToGuessUseCase = mock(GetRandomWordToGuessUseCase)
-
-  return {
-    view,
-    getWordGuessesUseCase,
-    getRandomWordToGuessUseCase,
-    controller: new Controller(instance(view), instance(getWordGuessesUseCase), instance(getRandomWordToGuessUseCase)),
-  }
-}
-
 describe('Controller', () => {
   it('should start with empty state', async () => {
     const { controller, view, getRandomWordToGuessUseCase } = setup()
@@ -49,3 +36,16 @@ describe('Controller', () => {
     expect(actual.name).toEqual('bound wordHandler')
   })
 })
+
+function setup() {
+  const view = mock(View)
+  const getWordGuessesUseCase = mock(GetWordGuessesUseCase)
+  const getRandomWordToGuessUseCase = mock(GetRandomWordToGuessUseCase)
+
+  return {
+    view,
+    getWordGuessesUseCase,
+    getRandomWordToGuessUseCase,
+    controller: new Controller(instance(view), instance(getWordGuessesUseCase), instance(getRandomWordToGuessUseCase)),
+  }
+}

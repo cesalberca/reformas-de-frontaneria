@@ -22,6 +22,7 @@ export class Controller {
     this.generateEmptyGuesses()
     this.view.start(Controller.MAXIMUM_NUMBER_OF_TRIES, this.wordToGuess, this.tries, this.triedWords)
     this.view.addEventListeners(this.wordHandler.bind(this))
+    console.log(this.wordToGuess)
   }
 
   async wordHandler(wordToTry: string): Promise<void> {

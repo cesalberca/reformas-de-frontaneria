@@ -1,12 +1,14 @@
 import { Guess } from '../domain/guess'
 
 export class View {
-  private readonly boardElement = document.querySelector<HTMLDivElement>('#board')!
-  private readonly form = document.querySelector<HTMLFormElement>('#form')!
-  private readonly element = document.querySelector<HTMLInputElement>('#input')!
+  private readonly boardElement = this.global.document.querySelector<HTMLDivElement>('#board')!
+  private readonly form = this.global.document.querySelector<HTMLFormElement>('#form')!
+  private readonly element = this.global.document.querySelector<HTMLInputElement>('#input')!
 
   private boardLength: number
   private maxRows = 6
+
+  constructor(private readonly global: typeof globalThis) {}
 
   start(maxRows: number, wordToGuess: string, tries: Guess[][], triedWords: string[]) {
     this.maxRows = maxRows
@@ -56,7 +58,7 @@ export class View {
   }
 
   private printRow(guesses: Guess[], triedWord?: string) {
-    const word = document.createElement('div')
+    const word = this.global.document.createElement('div')
     word.classList.add('row')
 
     for (let i = 0; i < this.boardLength; i++) {
@@ -66,7 +68,7 @@ export class View {
   }
 
   private printLetterCell(element: HTMLDivElement, guess: Guess, triedLetter?: string) {
-    const div = document.createElement('div')
+    const div = this.global.document.createElement('div')
     div.classList.add('cell')
     if (triedLetter !== undefined) {
       div.innerHTML = triedLetter
