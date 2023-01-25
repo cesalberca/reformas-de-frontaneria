@@ -14,6 +14,12 @@ fetch(
 )
   .then(x => x.json())
   .then(data => {
+    let a
+
+    if (a) {
+      a = 1
+    }
+
     // Word to guess
     let w = data[Math.floor(Math.random() * data.length)]
     console.log({ word: w })

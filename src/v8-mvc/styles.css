@@ -28,16 +28,16 @@ body {
     'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-* {
-  box-sizing: border-box;
-}
-
 .wrapper {
   display: flex;
   height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 .board {
